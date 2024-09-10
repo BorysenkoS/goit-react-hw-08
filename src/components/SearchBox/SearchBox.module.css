@@ -1,0 +1,20 @@
+.searchData {
+  outline: none;
+  border: 1px solid #74747c;
+  padding: 5px;
+  border-radius: 5px;
+
+  width: 310px;
+  margin-bottom: 20px;
+}
+
+.searchText {
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.searchData:hover,
+.searchData:focus {
+  border: 1px solid #646cff;
+  transition: border-color 0.25s;
+}
