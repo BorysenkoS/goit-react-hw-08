@@ -3,9 +3,10 @@ import * as Yup from "yup";
 
 import css from "./RegistrationForm.module.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { apiRegister } from "../../redux/auth/operations";
+import { selectAuthError } from "../../redux/auth/selectors";
 
 const initValues = {
   name: "",
@@ -29,6 +30,7 @@ const RegisterValidationSchema = Yup.object().shape({
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
 
   const handleSubmit = (values, actions) => {
     dispatch(apiRegister(values));
@@ -72,6 +74,7 @@ const RegistrationForm = () => {
         <button type="submit" className={css.formBtn}>
           Sign up
         </button>
+        {error && <p className={css.errorMessage}>Some error: {error}</p>}
       </Form>
     </Formik>
   );

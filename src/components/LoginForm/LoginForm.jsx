@@ -3,9 +3,10 @@ import * as Yup from "yup";
 
 import css from "./LoginForm.module.css";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { apiRegister } from "../../redux/auth/operations";
+import { apiLogin } from "../../redux/auth/operations";
+import { selectAuthError } from "../../redux/auth/selectors";
 
 const initValues = {
   email: "",
@@ -24,9 +25,10 @@ const LoginValidationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector(selectAuthError);
 
   const handleSubmit = (values, actions) => {
-    dispatch(apiRegister(values));
+    dispatch(apiLogin(values));
     actions.resetForm();
   };
 
@@ -56,8 +58,9 @@ const LoginForm = () => {
           />
         </label>
         <button type="submit" className={css.formBtn}>
-          Sign up
+          Log In
         </button>
+        {error && <p className={css.errorMessage}>Some error: {error}</p>}
       </Form>
     </Formik>
   );
