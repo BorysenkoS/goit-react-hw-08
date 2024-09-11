@@ -4,9 +4,9 @@ import Loader from "../Loader/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { setFilterValue } from "../../redux/filtersSlice";
-import { selectFilter } from "../../redux/filtersSlice";
-import { selectLoading } from "../../redux/contactsSlice";
+import { setFilterValue } from "../../redux/filters/slice";
+import { selectFilter } from "../../redux/filters/selectors";
+import { selectLoading } from "../../redux/contacts/selectors";
 
 const SearchBox = () => {
   const dispatch = useDispatch();

@@ -3,7 +3,8 @@ import css from "./ContactList.module.css";
 import Contact from "../Contact/Contact";
 import { useSelector } from "react-redux";
 
-import { selectError, selectFilteredContacts } from "../../redux/contactsSlice";
+import { selectError } from "../../redux/contacts/selectors";
+import { selectFilteredContacts } from "../../redux/contacts/slice";
 
 const ContactList = () => {
   const error = useSelector(selectError);
