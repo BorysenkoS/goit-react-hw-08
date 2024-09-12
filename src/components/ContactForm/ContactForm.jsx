@@ -6,6 +6,7 @@ import { ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 
 import { addContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const initValues = {
   name: "",
@@ -35,7 +36,11 @@ const ContactForm = () => {
     };
 
     const action = addContact(profileObj);
-    dispatch(action);
+    dispatch(action)
+      .unwrap()
+      .then(() => {
+        toast.success("Contact loaded successfully");
+      });
 
     actions.resetForm();
   };
@@ -68,6 +73,8 @@ const ContactForm = () => {
         <button type="submit" className={css.formBtn}>
           Add contact
         </button>
+
+        <Toaster />
       </Form>
     </Formik>
   );
