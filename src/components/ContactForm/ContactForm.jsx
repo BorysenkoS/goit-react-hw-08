@@ -8,19 +8,19 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 
 const initValues = {
-  profileName: "",
-  profileNumber: "",
+  name: "",
+  number: "",
 };
 
 const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
 const ProfileValidationSchema = Yup.object().shape({
-  profileName: Yup.string()
+  name: Yup.string()
     .required("Name profile is required")
 
     .min(2, "Min 2 symbols")
     .max(30, "Max 50 symbols"),
-  profileNumber: Yup.string()
+  number: Yup.string()
     .required("Phone number is required")
     .matches(phoneRegExp, "Phone number must be xxx-xx-xx"),
 });
@@ -30,8 +30,8 @@ const ContactForm = () => {
 
   const handleSubmit = (values, actions) => {
     const profileObj = {
-      name: values.profileName,
-      number: values.profileNumber,
+      name: values.name,
+      number: values.number,
     };
 
     const action = addContact(profileObj);
@@ -49,19 +49,19 @@ const ContactForm = () => {
       <Form className={css.form}>
         <label className={css.formLabel}>
           <span className={css.formText}>Name</span>
-          <Field className={css.formData} type="text" name="profileName" />
+          <Field className={css.formData} type="text" name="name" />
           <ErrorMessage
             className={css.errorMessage}
-            name="profileName"
+            name="name"
             component="span"
           />
         </label>
         <label className={css.formLabel}>
           <span className={css.formText}>Phone</span>
-          <Field className={css.formData} type="tel" name="profileNumber" />
+          <Field className={css.formData} type="tel" name="number" />
           <ErrorMessage
             className={css.errorMessage}
-            name="profileNumber"
+            name="number"
             component="span"
           />
         </label>

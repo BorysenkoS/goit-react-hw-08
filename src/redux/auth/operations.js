@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: "https://connections-api.goit.global/",
 });
 
@@ -15,7 +15,6 @@ export const apiLogin = createAsyncThunk(
     try {
       const { data } = await instance.post("/users/login", FormData);
       setAuthHeaders(data.token);
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -29,7 +28,6 @@ export const apiRegister = createAsyncThunk(
     try {
       const { data } = await instance.post("/users/signup", FormData);
       setAuthHeaders(data.token);
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -46,7 +44,6 @@ export const apiRefreshUser = createAsyncThunk(
       const token = state.auth.token;
       setAuthHeaders(token);
       const { data } = await instance.get("users/current");
-      console.log(data);
 
       return data;
     } catch (error) {
