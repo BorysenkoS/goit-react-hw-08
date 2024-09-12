@@ -59,9 +59,9 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(apiLogout.fulfilled, (state) => {
-        state.user = { name: null, email: null };
-        state.token = null;
-        state.isLoggedIn = false;
+        state.items = [];
+        state.error = null;
+        state.loading = false;
       })
       .addCase(apiLogout.rejected, (state, action) => {
         state.error = action.payload;
