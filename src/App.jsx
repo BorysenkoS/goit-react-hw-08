@@ -16,6 +16,8 @@ import { Layout } from "./components/Layout/Layout";
 // import { selectAuthIsRefreshing } from "./redux/auth/selectors";
 import { apiRefreshUser } from "./redux/auth/operations";
 import { selectAuthIsRefreshing } from "./redux/auth/selectors";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,9 +39,18 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/register"
+            element={<RestrictedRoute component={<RegistrationPage />} />}
+          />
+          <Route
+            path="/login"
+            element={<RestrictedRoute component={<LoginPage />} />}
+          />
+          <Route
+            path="/contacts"
+            element={<PrivateRoute component={<ContactsPage />} />}
+          />
         </Routes>
       </Layout>
       {/* <h1>Phonebook</h1>
